@@ -8,14 +8,14 @@ from product.models import Category,Product, Images, Comment
 from home.forms import SearchForm
 
 def home (request):
-	setting = Setting.objects.get(pk=1)
+	#setting = Setting.objects.get(pk=1)
 	category  = Category.objects.all()
 	products_slider = Product.objects.all().order_by('id')[:8]
 	products_picked = Product.objects.all().order_by('?')[:4]
 	products_latest = Product.objects.all().order_by('-id')[:8]
 	page="home"
 	context = {
-       'setting': setting,
+       #'setting': setting,
        'page':page,
        'category':category,
        'products_slider': products_slider,
@@ -47,10 +47,10 @@ def contactus (request):
  			data.save()  #save data to table
  			messages.success(request,"Your message has ben sent. Thank you for your message.")
  			return HttpResponseRedirect('/contactus')
-	setting = Setting.objects.get(pk=1)
+	#setting = Setting.objects.get(pk=1)
 	form = ContactForm
 	context = {
-       'setting': setting,
+       #'setting': setting,
        'form':form
 
 	}

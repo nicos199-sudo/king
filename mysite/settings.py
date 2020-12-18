@@ -25,7 +25,7 @@ SECRET_KEY = '$x4mk&fmelp(@3dq%9pgqa+d5yj0dyp24d+j-_7#_vcl5a2^)+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1','165.227.38.57']
 
 
 # Application definition
