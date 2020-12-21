@@ -6,6 +6,7 @@ from django.utils.safestring import mark_safe
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+from django.db.models import Avg, Count
 # Create your models here.
 
 
@@ -70,6 +71,21 @@ class Product(models.Model):
             return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
             
     image_tag.short_description = 'Image'
+
+
+    def avaregereview(self):
+        reviews = Comment.objects.filter(product=self, status='True').aggregate(avarage=Avg('rate'))
+        avg=0
+        if reviews["avarage"] is not None:
+            avg=float(reviews["avarage"])
+        return avg
+
+    def countreview(self):
+        reviews = Comment.objects.filter(product=self, status='True').aggregate(count=Count('id'))
+        cnt=0
+        if reviews["count"] is not None:
+            cnt = int(reviews["count"])
+        return cnt
 
 class Images(models.Model):
     product=models.ForeignKey(Product,on_delete=models.CASCADE)

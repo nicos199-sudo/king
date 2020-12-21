@@ -18,10 +18,13 @@ from django.contrib import admin
 from django.urls import path, include,re_path
 from django.conf.urls.static import static
 from home import views
+from order import views as Orderviews
+from user import views as UserViews
 
 urlpatterns = [
 	path('',include('home.urls')),
 	path('product/', include('product.urls')),
+    path('user/', include('user.urls')),
     path('product/<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),
     path('aboutus/',views.aboutus, name='aboutus'),
     path('contactus/',views.contactus, name='contactus'),
@@ -29,5 +32,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('search_auto/', views.search_auto, name='search_auto'),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    path('order/', include('order.urls')),
+    path('shopcart/', Orderviews.shopcart, name='shopcart'),
+    path('login/', UserViews.login_form, name='login_form'),
+    path('signup/', UserViews.signup_form, name='signup_form'),
+    path('logout/', UserViews.logout_func, name='logout'),
+
+
     path('category/<int:id>/<slug:slug>', views.category_products, name='category_products'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

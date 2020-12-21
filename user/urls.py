@@ -1,8 +1,8 @@
 from django.urls import path
 from . import views
 
-urlpatterns = {
-    path('user/', views.index, name='user'),
+urlpatterns = [
+    path('', views.index, name='user'),
     path('update/', views.user_update, name='user_update'),
     path('password/', views.user_password, name='user_password'),
     path('login/', views.login_form, name='login_form'),
@@ -16,4 +16,4 @@ urlpatterns = {
     path('comments/', views.user_comments, name='user_comments'),
     path('deletecomments/<int:id>', views.user_deletecomments, name='user_deletecomments'),
 
-}
+]

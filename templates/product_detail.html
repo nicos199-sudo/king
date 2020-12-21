@@ -62,16 +62,17 @@
 							<h2 class="product-name">{{ product.title }}</h2>
 							<h3 class="product-price">{{ product.price }}</h3>
 							<div>
-								<div class="product-rating">
-									<i class="fa fa-star{% if product.averegereview < 1 %}-o empty{% endif %}"></i>
-									<i class="fa fa-star{% if product.averegereview < 2 %}-o empty{% endif %}"></i>
-									<i class="fa fa-star{% if product.averegereview < 3 %}-o empty{% endif %}"></i>
-									<i class="fa fa-star{% if product.averegereview < 4 %}-o empty{% endif %}"></i>
-									<i class="fa fa-star{% if product.averegereview < 5 %}-o empty{% endif %}"></i>
-									
-								</div>
-								<a href="#"> Review(s) / Add Review</a>
-							</div>
+                                <div class="product-rating">
+                                    <i class="fa fa-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                                    <i class="fa fa-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                                    <i class="fa fa-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                                    <i class="fa fa-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                                    <i class="fa fa-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+                                    {{ product.avaregereview |stringformat:".2f"}}
+                                </div>
+                                <a href="#tab1"> {{ product.countreview}}  Review(s) / Add Review</a>
+                            </div>
+
 							<p><strong>Availability:</strong> In Stock</p>
 							<p><strong>Brand:</strong> <b>Akaguriro Soft</b> </p>
 							<p>{{ product.description }}</p>
@@ -115,7 +116,7 @@
 							<ul class="tab-nav">
 								<li class="active"><a data-toggle="tab" href="#tab1">Details</a></li>
 
-								<li><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
+								<li><a data-toggle="tab" href="#tab2">Reviews ( {{ product.countreview}} )</a></li>
 							</ul>
 							<div class="tab-content">
 								<div id="tab1" class="tab-pane fade in active">
