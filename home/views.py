@@ -2,7 +2,7 @@
 import json
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
-from home.models import Setting, ContactForm, ContactMessage
+from home.models import Setting, ContactForm, ContactMessage,FAQ
 from django.contrib import messages
 from product.models import Category,Product, Images, Comment
 from home.forms import SearchForm
@@ -122,4 +122,14 @@ def product_detail(request, id, slug):
 
     return render(request, 'product_detail.html', context)
 
+def faq(request):
+  category=Category.objects.all()
+  faq=FAQ.objects.filter(status="True").order_by("ordernumber")
 
+  context = {
+
+         'category':category,
+         'faq':faq,
+          }
+
+  return render(request, 'faq.html', context)

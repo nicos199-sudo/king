@@ -14,7 +14,7 @@ from order.models import Order
 from order.models import OrderProduct
 
 from product.models import Comment
-
+from home.models import FAQ
 
 def index(request):
     category = Category.objects.all()
@@ -52,28 +52,29 @@ def signup_form(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.save() #completed sign up
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(username=username, password=password)
             login(request, user)
+            # Create data in profile table for user
             current_user = request.user
-            data = UserProfile()
-            data.user.id = current_user.id
-            data.image = "images/users/DSC_0009.JPG"
+            data=UserProfile()
+            data.user_id=current_user.id
+            data.image="images/users/user.png"
             data.save()
-            messages.success(request, "your account has been created successfully")
+            messages.success(request, 'Your account has been created!')
             return HttpResponseRedirect('/')
         else:
-            messages.warning(request, form.errors)
-            return HttpResponseRedirect('/user/signup')
-    form = SignUpForm()
+            messages.warning(request,form.errors)
+            return HttpResponseRedirect('/signup')
 
+
+    form = SignUpForm()
     category = Category.objects.all()
-    context = {
-                 'category':category,
-                 'form':form,
-              }
+    context = {'category': category,
+               'form': form,
+               }
     return render(request, 'signup.html', context)
 
 def logout_func(request):
@@ -89,7 +90,7 @@ def user_update(request):
             user_form.save()
             profile_form.save()
             messages.success(request, "your account has been updated successfully")
-            return HttpResponseRedirect('/user/user')
+            return HttpResponseRedirect('/user')
 
     else:
         category = Category.objects.all()
@@ -112,7 +113,7 @@ def user_password(request):
             update_session_auth_hash(request,user)
             messages.success(request, "your password has been changed successfully")
 
-            return HttpResponseRedirect('/user/user')
+            return HttpResponseRedirect('/user')
         else:
             messages.error(request, 'Please correct the error below!! <br>'+str(form.errors))
             return HttpResponseRedirect('/user/password')
@@ -194,3 +195,5 @@ def user_deletecomments(request,id):
     comments = Comment.objects.filter(id=id, user_id=current_user.id ).delete()
     messages.success(request, "comment deleted !")
     return HttpResponseRedirect('/user/comments')
+
+

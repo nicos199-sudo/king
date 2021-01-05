@@ -9,7 +9,7 @@ from django.utils.crypto import get_random_string
 from .models import ShopCart, ShopCartForm, OrderForm, Order, OrderProduct
 from product.models import Images, Category, Product, Comment
 
-#from user.models import UserProfile
+from user.models import UserProfile
 
 
 def index(request):
@@ -17,16 +17,18 @@ def index(request):
 
 @login_required(login_url = '/login')
 def addtoshopcart(request, id):
-     url = request.META.get('HTTP_REFERER')
-     current_user = request.user
 
-     checkproduct = ShopCart.objects.filter(product_id=id)
-     if checkproduct:
+    url = request.META.get('HTTP_REFERER')  # get last url
+    current_user = request.user  # Access User Session information
+    product= Product.objects.get(pk=id)
+
+    checkproduct = ShopCart.objects.filter(product_id=id)
+    if checkproduct:
          control = 1
-     else:
+    else:
          control = 0
 
-     if request.method == 'POST':
+    if request.method == 'POST':
          form = ShopCartForm(request.POST)
          if form.is_valid():
              if control==1:
@@ -43,7 +45,7 @@ def addtoshopcart(request, id):
                  messages.success(request, 'Your cart has been updated.')
                  return HttpResponseRedirect(url)
 
-     else:
+    else:
 
          if control == 1:
              data = ShopCart.objects.get(product_id=id)
@@ -136,7 +138,6 @@ def orderproduct(request):
             return  HttpResponseRedirect('/order/orderproduct')
 
     form = OrderForm()
-    shopcart = ShopCart.objects.filter(user_id=current_user.id)
     profile = UserProfile.objects.get(user_id=current_user.id)
     #return HttpResponse(str(total))
     context = {'category':category,
