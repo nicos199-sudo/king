@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'mptt',
+    'easy_thumbnails',
+    'filer',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +74,12 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
+            'libraries':{
+                        'myapptags':  'home.templatetags.myapptags',
+ 
+            }
+
         },
     },
 ]

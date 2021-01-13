@@ -38,7 +38,7 @@ urlpatterns = [
     path('signup/', UserViews.signup_form, name='signup_form'),
     path('logout/', UserViews.logout_func, name='logout'),
     path('faq/', views.faq, name='faq'),
-    #path('ajaxcolor/', views.ajaxcolor, name='ajaxcolor'),
+    path('ajaxcolor/', views.ajaxcolor, name='ajaxcolor'),
 
     path('category/<int:id>/<slug:slug>', views.category_products, name='category_products'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
