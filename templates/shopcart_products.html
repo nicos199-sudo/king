@@ -57,9 +57,9 @@
                                         <a href="/product/{{ rs.product.id }}/{{ rs.product.slug }}">{{rs.product}} {{ rs.variant.size }} {{ rs.variant.color }}</a>  </td>
                                     <td class="price text-center"><strong>
                                         {% if rs.product.variant == 'None' %}
-                                            {{ rs.product.price }} 
+                                            BIF {{ rs.product.price }} 
                                         {% else %}
-                                            {{ rs.variant.price }}
+                                            BIF {{ rs.variant.price }}
                                         {% endif %}
                                     </strong></td>
                                     <td class="qty text-center"><strong>{{rs.quantity}}</strong></td>
@@ -80,7 +80,7 @@
                             <tr>
                                 <th class="empty" colspan="3"></th>
                                 <th>SUBTOTAL</th>
-                                <th colspan="2" class="sub-total">{{ total }}</th>
+                                <th colspan="2" class="sub-total">BIF {{ total }}</th>
                             </tr>
                             <tr>
                                 <th class="empty" colspan="3"></th>
@@ -90,7 +90,7 @@
                             <tr>
                                 <th class="empty" colspan="3"></th>
                                 <th>TOTAL</th>
-                                <th colspan="2" class="total">{{ total }}</th>
+                                <th colspan="2" class="total"> BIF {{ total }}</th>
                             </tr>
                             </tfoot>
                         </table>

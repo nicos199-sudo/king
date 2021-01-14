@@ -34,6 +34,7 @@ urlpatterns = [
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
     path('order/', include('order.urls')),
     path('shopcart/', Orderviews.shopcart, name='shopcart'),
+    #path('ordercomplete/', Orderviews.ordercomplete, name='ordercomplete'),
     path('login/', UserViews.login_form, name='login_form'),
     path('signup/', UserViews.signup_form, name='signup_form'),
     path('logout/', UserViews.logout_func, name='logout'),

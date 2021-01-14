@@ -142,7 +142,7 @@ def orderproduct(request):
                     product.amount -= rs.quantity
                     product.save()
                 else:
-                    variant = Variants.objects.get(id=rs.product_id)
+                    variant = Variants.objects.get(id=rs.variant_id)
                     variant.quantity -= rs.quantity
                     variant.save()
                 #************ <> *****************
@@ -164,3 +164,6 @@ def orderproduct(request):
                'profile': profile,
                }
     return render(request, 'order_product.html', context)
+
+
+

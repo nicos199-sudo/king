@@ -1,8 +1,8 @@
 {% extends 'homebase.html' %}
 
-{% block title %} About Us - Akaguriro {% endblock %}
-{% block description %} {% endblock %}
-{% block keywords %} {% endblock %}
+{% block title %} About Us- {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
 
 {% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
 
@@ -13,7 +13,7 @@
 		<div class="container">
 			<ul class="breadcrumb">
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li class="active">About Us</li>
+                <li class="active">trans "About Us</li>
 			</ul>
 		</div>
 	</div>
@@ -25,7 +25,7 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-                
+                {{ setting.aboutus|safe }}
 			</div>
 			<!-- /row -->
 		</div>
